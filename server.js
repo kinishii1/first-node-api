@@ -1,9 +1,17 @@
 import http from 'http';
 
+const PORT = 3000;
+const routes = {
+  '/': 'Hello, World!',
+  '/about': 'This is the about page',
+  '/contact': 'This is the contact page'
+}
+
 const server = http.createServer((req, res) => {
-  res.end('Hello, World!');
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end(routes[req.url] || '404 Not Found');
 })
 
-server.listen(3000, () => {
-  console.log('Server is running on port 3000');
+server.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
